@@ -184,10 +184,10 @@ bar {
 exec --no-startup-id redshift-gtk -l 0:0
 
 # lock wm
-#bindsym $mod+l exec i3lock --color=383838
+bindsym $mod+l exec i3lock --color=383838
 
 # lock wm and turn off screens
-bindsym $mod+l exec i3lock --color=383838 && xset dpms force suspend
+# bindsym $mod+l exec i3lock --color=383838 && xset dpms force suspend
 
 # next workspace mod+Tab fwd or mod+shift+tab
 bindsym $mod+Tab workspace next
@@ -199,11 +199,11 @@ for_window [class=".*"] border pixel 1
 # --- Sleep stuff ---
 
 # prevents display sleep
-#exec --no-startup-id xset s off
-#exec --no-startup-id xset -dpms
-#exec --no-startup-id xset s noblank
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s noblank
 
 # screen off after 5 mins 
-exec xset dpms 0 0 300
+# exec xset dpms 0 0 300
 
 # --------------------
