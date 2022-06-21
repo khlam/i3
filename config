@@ -210,3 +210,6 @@ bindsym $mod+e exec nautilus --no-desktop --new-window &
 exec xset dpms 0 0 300
 
 # --------------------
+
+focus_follows_mouse yes
+focus_wrapping no
