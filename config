@@ -87,8 +87,8 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
 # bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -187,14 +187,19 @@ exec --no-startup-id redshift-gtk -l 0:0
 #bindsym $mod+l exec i3lock --color=383838
 
 # lock wm and turn off screens
-bindsym $mod+l exec i3lock --color=383838 && xset dpms force suspend
+bindsym $mod+l exec i3lock --color=383838 --show-failed-attempts && xset dpms force suspend
 
 # next workspace mod+Tab fwd or mod+shift+tab
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 # border to 1 pixel, also removes window titles
-for_window [class=".*"] border pixel 1
+for_window [class=".*"] border pixel 3
+
+for_window [class="Google-chrome"] border pixel 0
+for_window [class="Chromium"] border pixel 0
+for_window [class="Gnome-terminal"] border pixel 0
+for_window [class="Codium"] border pixel 0
 
 # open nautilus
 bindsym $mod+e exec nautilus --no-desktop --new-window &
@@ -207,9 +212,47 @@ bindsym $mod+e exec nautilus --no-desktop --new-window &
 #exec --no-startup-id xset s noblank
 
 # screen off after 5 mins 
-exec xset dpms 0 0 300
+#exec xset dpms 0 0 300
 
 # --------------------
 
 focus_follows_mouse yes
 focus_wrapping no
+
+# Put workspace 1 on primary monitor
+workspace "1" output DP-0
+# Focus workspace 1
+exec i3-msg workspace 1
+
+# Send workspace 8 to second monitor
+workspace "8" output DP-2
+
+# shutdown / restart / suspend menu
+# src: https://thevaluable.dev/i3-config-mouseless/
+set $mode_system System (r) reboot, (CTRL+s) shutdown | cancel (ESC)
+
+mode "$mode_system" {
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+BackSpace mode "$mode_system"
+
+# floating window sizes and position
+for_window [class="KeePassXC"] floating enable
+for_window [class="KeePassXC"] floating_minimum_size 1920 x 1080
+for_window [class="KeePassXC"] floating_maximum_size 1920 x 1080
+
+for_window [class="Gnome-terminal"] floating_minimum_size 1920 x 1080
+for_window [class="Gnome-terminal"] floating_maximum_size 1920 x 1080
+
+for_window [class="Nautilus"] floating enable
+for_window [class="Nautilus"] floating_minimum_size 1920 x 1080
+for_window [class="Nautilus"] floating_maximum_size 1920 x 1080
+
+# dynamicly rename i3 workspaces
+exec_always --no-startup-id exec /home/khl/.config/i3/i3_workspace_names_daemon.py
