@@ -1,3 +1,3 @@
 1. `apt install i3 redshift`
 2. Install miniconda
-3. 
+3. `pip install -r requirements.txt --user`

@@ -88,7 +88,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
+bindsym $mod+t layout toggle tabbed split
 # bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -224,8 +224,17 @@ workspace "1" output DP-0
 # Focus workspace 1
 exec i3-msg workspace 1
 
-# Send workspace 8 to second monitor
+workspace "2" output DP-0
+workspace "3" output DP-0
+workspace "4" output DP-0
+workspace "5" output DP-0
+workspace "6" output DP-0
+workspace "7" output DP-0
+
+# Send workspace 8 - 0 to second monitor
 workspace "8" output DP-2
+workspace "9" output DP-2
+workspace "0" output DP-2
 
 # shutdown / restart / suspend menu
 # src: https://thevaluable.dev/i3-config-mouseless/
@@ -253,6 +262,9 @@ for_window [class="Gnome-terminal"] floating_maximum_size 1920 x 1080
 for_window [class="Nautilus"] floating enable
 for_window [class="Nautilus"] floating_minimum_size 1920 x 1080
 for_window [class="Nautilus"] floating_maximum_size 1920 x 1080
+
+for_window [class="Google-chrome"] floating_minimum_size 1920 x 1080
+for_window [class="Google-chrome"] floating_maximum_size 1920 x 1080
 
 # dynamicly rename i3 workspaces
 exec_always --no-startup-id exec /home/khl/.config/i3/i3_workspace_names_daemon.py
