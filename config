@@ -200,6 +200,7 @@ for_window [class="Google-chrome"] border pixel 0
 for_window [class="Chromium"] border pixel 0
 for_window [class="Gnome-terminal"] border pixel 0
 for_window [class="Codium"] border pixel 0
+for_window [class="firefox"] border pixel 0
 
 # open nautilus
 bindsym $mod+e exec nautilus --no-desktop --new-window &
