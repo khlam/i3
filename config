@@ -219,7 +219,7 @@ bindsym $mod+e exec nautilus --no-desktop --new-window &
 # --------------------
 
 focus_follows_mouse no
-focus_wrapping no
+focus_wrapping force
 
 # Put workspace 1 on primary monitor
 workspace "1" output DP-2
