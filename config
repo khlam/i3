@@ -114,7 +114,7 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "10: KeePassX" # work-around to force password gen to open in same workspace
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -202,6 +202,7 @@ for_window [class="Gnome-terminal"] border pixel 0
 for_window [class="Codium"] border pixel 0
 for_window [class="firefox"] border pixel 0
 for_window [class="Nautilus"] border pixel 0
+for_window [class="KeePassXC|Generate Password"] border pixel 0
 
 # open nautilus
 bindsym $mod+e exec nautilus --no-desktop --new-window &
@@ -220,6 +221,7 @@ bindsym $mod+e exec nautilus --no-desktop --new-window &
 
 focus_follows_mouse no
 focus_wrapping force
+focus_on_window_activation focus
 
 # Put workspace 1 on primary monitor
 workspace "1" output DP-2
@@ -254,7 +256,9 @@ mode "$mode_system" {
 bindsym $mod+BackSpace mode "$mode_system"
 
 # keepassxc always to workspace 10
-assign [class="KeePassXC"] $ws10
+assign [class="KeePassXC|Generate Password"] $ws10
+for_window [class="KeePassXC|Generate Password"] focus
+for_window [class="KeePassXC|Generate Password"] floating disable 
 
 # floating window sizes and position
 for_window [class="Gnome-terminal"] floating_minimum_size 1920 x 1080
